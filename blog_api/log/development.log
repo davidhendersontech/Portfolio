@@ -1,0 +1,634 @@
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (140.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (114.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20210604164507)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "author" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210604164507"]]
+  [1m[36mTRANSACTION (107.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20210604164546)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210604164546"]]
+  [1m[36mTRANSACTION (92.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-04 16:45:51.423188"], ["updated_at", "2021-06-04 16:45:51.423188"]]
+  [1m[36mTRANSACTION (65.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2021-06-04 10:48:04 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/david/.gem/ruby/2.6.0/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/david/.gem/ruby/2.6.0/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 16.2ms | Allocations: 471)
+Completed 200 OK in 39ms (Views: 32.3ms | ActiveRecord: 0.0ms | Allocations: 4142)
+
+
+Started POST "/posts/" for ::1 at 2021-06-04 10:50:23 -0600
+Processing by PostsController#create as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2021-06-04 16:50:23.837363"], ["updated_at", "2021-06-04 16:50:23.837363"]]
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (82.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+Completed 201 Created in 116ms (Views: 0.6ms | ActiveRecord: 83.9ms | Allocations: 9315)
+
+
+Started POST "/posts/?title=First%20week%20in%20Flatiron%20school&body=What%20if,%20on%20almost%20entirely%20a%20whim,%20you%20decided%20to%20completely%20change%20your%20life?%20Well%20that%27s%20exactly%20what%20I%20did%20when%20I%20decided%20to%20join%20Flatiron%20school.%20Flatiron%20School%20is%20a%20coding%20bootcamp,%20a%20program%20designed%20to%20give%20you%20everything%20you%20need%20to%20know%20to%20be%20a%20full%20stack%20software%20dev%20given%20to%20you%20in%20a%20nice%2016%20week%20present.%0AMy%20first%20week%20here%20recently%20came%20to%20a%20close%20and%20with%20the%20start%20of%20week%202%20I%20thought%20what%20better%20way%20to%20document%20everything%20I%27ve%20learned%20than%20to%20share%20it%20with%20you%20(my%20beautifully%20faithful%20github%20audience).So%20grab%20a%20coffee,%20get%20comfy%20and%20join%20me%20for%20the%20week%201%20recap.%0A%0A%23%23%20Nerves%20and%20Newfriends%0AMy%20program%20started%20on%20March%2016th%202021.I%20logged%20onto%20slack%20to%20click%20the%20link%20that%20had%20just%20been%20sent%20to%20me.%2012%20other%20beautiful%20people%20greeted%20me%20and%20our%20group%20was%20ceremoniously%20dubbed%20the%20%22New%20Friends%22.%20Now%20us%20newfriends%20were,%20well,%20new%20to%20it%20all%20and%20I%20had%20no%20idea%20what%20to%20expect.%20%0A-%20How%20would%20classes%20be%20scheduled?%0A-%20We%20had%2050%20people%20in%20standdown%20and%20only%2012%20in%20our%20class?%0A-%20How%20hard%20was%20this%20whole%20thing%20going%20to%20be?%0A-%20Who%20even,%20out%20of%20the%2050,%20were%20our%20instructors?%0A%0AWith%20any%20new%20program%20theres%20bounds%20to%20be%20lots%20of%20Nerves.%20I%20mean%20I%20really%20didn%27t%20know%20what%20I%20was%20getting%20myself%20into.%20All%20I%20knew%20to%20expect%20was%20a%20lot%20of%20work%20and%20a%20lot%20of%20things%20to%20learn.%20I%20got%20all%20of%20that%20on%20my%20first%20day%20and%20one%20thing%20I%20wasn%27t%20expecting:%20A%20group%20of%20new%20friends%20to%20work%20through%20it%20with.%0A%0AThe%20Flatiron%20School%20program%20would%20be%20nothing%20without%20it%27s%20tight%20knit%20community.%20You%20can%20tell%20from%20the%20second%20you%20join%20that%20these%20people%20*want*%20to%20help%20you.%20They%20*want*%20to%20see%20you%20succeed.%20And%20the%20real%20strength%20is%20having%20a%20cohort%20that%20I%20also%20want%20to%20succeed.%20If%20I%27m%20ever%20stuck%20on%20a%20problem,%20already%20I%20know%20that%20I%20will%20be%20able%20to%20go%20to%20multiple%20people%20to%20get%20help%20and%20work%20on%20the%20problem%20together.%20%0A%0A%23%23%20Class%20Schedules%0AEveryday%20starts%20with%20a%20stand%20up.%20That%27s%20when%20everyone%20in%20the%20Denver%20campus%20(and%20sometimes%20some%20alumni)%20all%20join%20a%20zoom%20call%20together%20and%20plan%20out%20the%20day.%20We%20talk%20about%20what%20we%20want%20to%20learn%20about%20that%20day,%20the%20general%20plan%20for%20the%20day,%20and%20just%20start%20our%20day%20off%20together.%20After%20that%20I%27ll%20join%20meditation%20that%27s%20hosted%20by%20one%20of%20the%20other%20students%20while%20the%20instructors%20take%20what%20we%20wanted%20to%20learn%20about%20and%20turn%20it%20into%20a%20full%20lesson%20plan.%20I%20really%20don%27t%20know%20how%20they%20can%20come%20up%20with%20the%20lessons%20so%20quick%20but%20it%27s%20amazing%20to%20have%20access%20to%20an%20instantly%20tailorable%20schedule.%20%0A%0AThe%20entire%20campus%20is%20split%20up%20into%20phases%200%20-%205.%20With%200%20being%20the%20prework%20before%20you%20start.%20Each%20phase%20lasts%20about%20two%20weeks.%20The%20first%20week%20you%20learn%20everything%20you%20need%20to%20know%20about%20that%20phase%27s%20subjects.%20Each%20class%20is%20joinable%20by%20anyone%20but%20mostly%20grouped%20by%20your%20phase.%20You%20code%20along%20with%20the%20instructor%20answering%20questions%20as%20you%20go.%20If%20you%20can%27t%20tell%20already%20a%20huge%20theme%20to%20Flatiron%20School%20is%20you%27re%20never%20alone.%20Essentially%20you%27re%20learning%20a%20whole%20new%20language;%20a%20whole%20new%20way%20to%20think.%20I%20don%27t%20think%20I%20have%20to%20say%20that%20learning%20a%20whole%20new%20language%20on%20your%20own%20can%20be%20incredibly%20daunting,%20and%20Flatiron%20school%20does%20a%20great%20job%20of%20making%20you%20a%20part%20of%20a%20group.%0A%0ABUT%20DAVID,%20I%20hear%20you%20saying,%20%22Whenever%20you%27re%20in%20a%20job%20you%20might%20have%20to%20take%20on%20challenges%20by%20yourself%22.%20Thank%20you,%20my%20made%20up%20friend,%20for%20that%20perfect%20segue.%20Welcome%20to%20week%202,%20your%20first%20coding%20challenge!%20%20You%27ll%20have%2090%20minutes%20to%20write%20code%20covering%20everything%20you%27ve%20learned%20so%20far.%20Don%27t%20worry%20though,%20IT%27S%20NOT%20A%20TEST.%20You%20take%20the%20coding%20challenge%20in%2090%20minutes,%20once%20a%20day.%20After%20you%20take%20the%20test%20an%20instructor%20will%20contact%20you%20and%20you%27ll%20both%20go%20over%20your%20code%20together.%20This%20allows%20Flatiron%20School%20to%20know%20where%20you%27re%20at%20in%20your%20journey%20and%20make%20sure%20they%20can%20touch%20on%20everything%20you%20absolutely%20need%20to%20know%20before%20moving%20on.%20Today%20will%20be%20the%20first%20time%20I%20take%20a%20coding%20challenge%20so%20I%27ll%20make%20sure%20to%20keep%20you%20guys%20updated.%0A%0A%23%23%20First%20week%20Wrap%20Up%0A%0AI%27m%20going%20to%20write%20another%20blog%20post%20to%20go%20over%20everything%20that%20we%27ve%20learned%20so%20far%20and%20recap%20what%20everything%20does.%20That%20just%20leaves%20my%20thoughts...%0A%0A%3Cpre%3E%20%3Cb%3E%20I%20LOVE%20IT%20%3C/b%3E%20%3C/pre%3E%0A%0AI%20came%20from%20a%20computer%20science%20degree%20program%20in%20college.%20I%20knew%20then%20that%20I%20could%20do%20programming%20as%20a%20job.%20Time%20flew%20by%20when%20I%20was%20working%20on%20code.%20Once%20I%20got%20bit%20by%20a%20challenge%20I%20had%20to%20keep%20working%20on%20it%20till%20I%20finished%20it.%20Sadly,%20this%20was%20exclusive%20to%20my%20computer%20classes.%0AOther%20classes%20were%20boring%20and%20a%20chore%20for%20me.%20I%20could%20do%20it,%20but%20I%20had%20to%20make%20myself%20do%20it.%20When%20covid%20hit%20and%20everything%20went%20online%20it%20became%20even%20harder%20to%20keep%20myself%20accountable.%20I%20went%20from%20being%20straight%20A%27s%20and%20working%20hard%20to%20working%20even%20harder%20and%20straight%20c%27s.%0A%0AI%20knew%20this%20wasn%27t%20the%20path%20for%20me.%20I%20knew%20something%20had%20to%20change.%20It%27s%20hard%20for%20me%20to%20put%20what%20changed%20for%20me%20into%20words.%20I%20guess%20it%20finally%20clicked%20that%20I%20was%20in%20charge%20and%20I%20really%20could%20choose%20my%20own%20destiny.%20If%20college%20wasn%27t%20making%20me%20excited%20to%20learn%20what%20was%20the%20point?%0A%0AI%20got%20really%20lucky%20choosing%20Flatiron%20School.%20The%20instructors%20(Ahmed,%20Damon,%20Dane,%20Marc,%20Kyle)%20are%20FANTASTIC.%20You%20can%20tell%20that%20they%20just%20want%20to%20teach%20people%20and%20want%20to%20help%20with%20any%20problems.%20My%20favorite%20thing%20about%20Flatiron%20is%20just%20the%20atmoshpere%20they%20build.%20Meditations%20after%20stand%20up,%20constant%20breaks%20so%20you%20don%27t%20die,%20hilarious%20puns%20in%20the%20zoom%20chat%20as%20lessons%20are%20going,%20refusing%20to%20call%20lessons%20lectures,%20a%20tight%20group%20of%20students%20to%20work%20with,%20a%20larger%20group%20of%20students%20further%20into%20the%20program%20to%20also%20help%20you%20along,%20you%20learn%20a%20lot%20in%20a%20short%20amount%20of%20time.%20There%27s%20too%20much%20to%20list.%20I%27ve%20already%20enjoyed%20my%20time%20so%20far%20and%20I%20know%20that%20I%27ll%20enjoy%20the%20rest%20of%20my%20time%20here%20too.%20Stay%20tuned%20for%20the%20week%202%20wrap%20up%20and%20curriculum%20reviews!&author=David%20Henderson" for ::1 at 2021-06-04 11:28:58 -0600
+Processing by PostsController#create as */*
+  Parameters: {"title"=>"First week in Flatiron school", "body"=>"What if, on almost entirely a whim, you decided to completely change your life? Well that's exactly what I did when I decided to join Flatiron school. Flatiron School is a coding bootcamp, a program designed to give you everything you need to know to be a full stack software dev given to you in a nice 16 week present.\nMy first week here recently came to a close and with the start of week 2 I thought what better way to document everything I've learned than to share it with you (my beautifully faithful github audience).So grab a coffee, get comfy and join me for the week 1 recap.\n\n## Nerves and Newfriends\nMy program started on March 16th 2021.I logged onto slack to click the link that had just been sent to me. 12 other beautiful people greeted me and our group was ceremoniously dubbed the \"New Friends\". Now us newfriends were, well, new to it all and I had no idea what to expect. \n- How would classes be scheduled?\n- We had 50 people in standdown and only 12 in our class?\n- How hard was this whole thing going to be?\n- Who even, out of the 50, were our instructors?\n\nWith any new program theres bounds to be lots of Nerves. I mean I really didn't know what I was getting myself into. All I knew to expect was a lot of work and a lot of things to learn. I got all of that on my first day and one thing I wasn't expecting: A group of new friends to work through it with.\n\nThe Flatiron School program would be nothing without it's tight knit community. You can tell from the second you join that these people *want* to help you. They *want* to see you succeed. And the real strength is having a cohort that I also want to succeed. If I'm ever stuck on a problem, already I know that I will be able to go to multiple people to get help and work on the problem together. \n\n## Class Schedules\nEveryday starts with a stand up. That's when everyone in the Denver campus (and sometimes some alumni) all join a zoom call together and plan out the day. We talk about what we want to learn about that day, the general plan for the day, and just start our day off together. After that I'll join meditation that's hosted by one of the other students while the instructors take what we wanted to learn about and turn it into a full lesson plan. I really don't know how they can come up with the lessons so quick but it's amazing to have access to an instantly tailorable schedule. \n\nThe entire campus is split up into phases 0 - 5. With 0 being the prework before you start. Each phase lasts about two weeks. The first week you learn everything you need to know about that phase's subjects. Each class is joinable by anyone but mostly grouped by your phase. You code along with the instructor answering questions as you go. If you can't tell already a huge theme to Flatiron School is you're never alone. Essentially you're learning a whole new language", " a whole new way to think. I don't think I have to say that learning a whole new language on your own can be incredibly daunting, and Flatiron school does a great job of making you a part of a group.\n\nBUT DAVID, I hear you saying, \"Whenever you're in a job you might have to take on challenges by yourself\". Thank you, my made up friend, for that perfect segue. Welcome to week 2, your first coding challenge!  You'll have 90 minutes to write code covering everything you've learned so far. Don't worry though, IT'S NOT A TEST. You take the coding challenge in 90 minutes, once a day. After you take the test an instructor will contact you and you'll both go over your code together. This allows Flatiron School to know where you're at in your journey and make sure they can touch on everything you absolutely need to know before moving on. Today will be the first time I take a coding challenge so I'll make sure to keep you guys updated.\n\n## First week Wrap Up\n\nI'm going to write another blog post to go over everything that we've learned so far and recap what everything does. That just leaves my thoughts...\n\n<pre> <b> I LOVE IT </b> </pre>\n\nI came from a computer science degree program in college. I knew then that I could do programming as a job. Time flew by when I was working on code. Once I got bit by a challenge I had to keep working on it till I finished it. Sadly, this was exclusive to my computer classes.\nOther classes were boring and a chore for me. I could do it, but I had to make myself do it. When covid hit and everything went online it became even harder to keep myself accountable. I went from being straight A's and working hard to working even harder and straight c's.\n\nI knew this wasn't the path for me. I knew something had to change. It's hard for me to put what changed for me into words. I guess it finally clicked that I was in charge and I really could choose my own destiny. If college wasn't making me excited to learn what was the point?\n\nI got really lucky choosing Flatiron School. The instructors (Ahmed, Damon, Dane, Marc, Kyle) are FANTASTIC. You can tell that they just want to teach people and want to help with any problems. My favorite thing about Flatiron is just the atmoshpere they build. Meditations after stand up, constant breaks so you don't die, hilarious puns in the zoom chat as lessons are going, refusing to call lessons lectures, a tight group of students to work with, a larger group of students further into the program to also help you along, you learn a lot in a short amount of time. There's too much to list. I've already enjoyed my time so far and I know that I'll enjoy the rest of my time here too. Stay tuned for the week 2 wrap up and curriculum reviews!"=>nil, "author"=>"David Henderson"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "First week in Flatiron school"], ["body", "What if, on almost entirely a whim, you decided to completely change your life? Well that's exactly what I did when I decided to join Flatiron school. Flatiron School is a coding bootcamp, a program designed to give you everything you need to know to be a full stack software dev given to you in a nice 16 week present.\nMy first week here recently came to a close and with the start of week 2 I thought what better way to document everything I've learned than to share it with you (my beautifully faithful github audience).So grab a coffee, get comfy and join me for the week 1 recap.\n\n## Nerves and Newfriends\nMy program started on March 16th 2021.I logged onto slack to click the link that had just been sent to me. 12 other beautiful people greeted me and our group was ceremoniously dubbed the \"New Friends\". Now us newfriends were, well, new to it all and I had no idea what to expect. \n- How would classes be scheduled?\n- We had 50 people in standdown and only 12 in our class?\n- How hard was this whole thing going to be?\n- Who even, out of the 50, were our instructors?\n\nWith any new program theres bounds to be lots of Nerves. I mean I really didn't know what I was getting myself into. All I knew to expect was a lot of work and a lot of things to learn. I got all of that on my first day and one thing I wasn't expecting: A group of new friends to work through it with.\n\nThe Flatiron School program would be nothing without it's tight knit community. You can tell from the second you join that these people *want* to help you. They *want* to see you succeed. And the real strength is having a cohort that I also want to succeed. If I'm ever stuck on a problem, already I know that I will be able to go to multiple people to get help and work on the problem together. \n\n## Class Schedules\nEveryday starts with a stand up. That's when everyone in the Denver campus (and sometimes some alumni) all join a zoom call together and plan out the day. We talk about what we want to learn about that day, the general plan for the day, and just start our day off together. After that I'll join meditation that's hosted by one of the other students while the instructors take what we wanted to learn about and turn it into a full lesson plan. I really don't know how they can come up with the lessons so quick but it's amazing to have access to an instantly tailorable schedule. \n\nThe entire campus is split up into phases 0 - 5. With 0 being the prework before you start. Each phase lasts about two weeks. The first week you learn everything you need to know about that phase's subjects. Each class is joinable by anyone but mostly grouped by your phase. You code along with the instructor answering questions as you go. If you can't tell already a huge theme to Flatiron School is you're never alone. Essentially you're learning a whole new language"], ["author", "David Henderson"], ["created_at", "2021-06-04 17:28:58.922406"], ["updated_at", "2021-06-04 17:28:58.922406"]]
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (99.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+Completed 201 Created in 111ms (Views: 0.7ms | ActiveRecord: 100.3ms | Allocations: 7923)
+
+
+Started DELETE "/posts/1" for ::1 at 2021-06-04 11:29:16 -0600
+Processing by PostsController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:23:in `destroy'
+  [1m[36mPost Destroy (0.3ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/posts_controller.rb:23:in `destroy'
+  [1m[36mTRANSACTION (109.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:23:in `destroy'
+Completed 204 No Content in 120ms (Views: 0.3ms | ActiveRecord: 110.1ms | Allocations: 4584)
+
+
+Started POST "/posts/?title=Monitor%20Management%20on%20Arch%20Linux&author=David%20Henderson&body=Multiple%20monitors%20are%20all%20but%20a%20necessity%20(%20especially%20if%20you%27re%20t430%20doesn%27t%0Ahave%20an%20hd%20screen%20like%20mine%20)%20but%20luckily%20with%20a%20few%20tools%20and%20simple%20scripts%0Aexternal%20monitors%20can%20be%20as%20easy%20as%20two%20keystrokes.%20%0A%0A%23%23%20Arandr%20and%20You%20%0A%0AArandr%20is%20a%20graphical%20tool%20for%20managing%20monitors%20on%20an%20X%20session.%20To%20grab%20it%0Ajust%20use%20```pacman%20-S%20arandr```%20and%20let%20pacman%20do%20it%27s%20thing.%0A%0AArandr%20is%20a%20graphical%20tool%20and%20includes%20a%20nice%20gui,%20but%20that%27s%20not%20what%20we%27re%0Ahere%20for.%20We%20want%20to%20be%20able%20to%20change%20monitor%20setups%20with%20a%20keybind.%20Simply%20set%0Aup%20the%20monitor%20enviorment%20you%20want%20using%20arandr%20(making%20sure%20to%20set%20your%0Aresolution)%20and%20save%20the%20shell%20script%20it%20creates%20by%20clicking%20on%20Layout%20%3E%20Save%0AAs.%20I%20saved%20mine%20to%20my%20scripts%20folder%20at%20```%20~/.scripts/MonitorOnLeft.sh%22```%0A%0A%23%23%20The%20Scripts%0A%0AAlmost%20done%20now%20we%20just%20need%20to%20clean%20up%20a%20few%20things.%20The%20auto-generated%20file%0Ais%20just%20a%20bash%20script%20shell%20telling%20xrandr%20what%20to%20do.%20This%20gives%20us%20a%20good%20spot%0Ato%20tie%20up%20some%20loose%20ends%20with%20more%20than%20one%20monitor.%20%0A%0A%23%23%23%20Polybar%0A%0AI%20use%20(https://github.com/polybar/polybar/issues/763)%20which%20looks%0Afor%20all%20active%20monitors%20and%20passes%20that%20through%20as%20a%20varible%20for%20polybar.%20%0A%0AMake%20a%20new%20shell%20script%20(%20mine%20is%20named%20%22launchpolybar.sh%22%20)%20and%20copy%20the%20code%0Ainto%20it.%20We%20need%20to%20kill%20the%20polybar%20instance%20we%20already%20had%20or%20you%27ll%20end%20up%0Awith%20two%20polybars%20stacked.%20Adding%20```killall%20polybar```%20at%20the%20top%20of%0Alaunchpolybar.sh%20script.%20Make%20it%20executable%20with%20```chmod%20+x%20launchpolybar.sh```.%20%20%0A%0ASo%20now%20we%20have%20a%20script%20that%20might%20look%20like%20this%20%0A```%0A%23!/bin/sh%0A%20xrandr%20--output%20LVDS1%20--primary%20--mode%201600x900%20--pos%201920x90%20--rotate%20normal%20--output%20DP1%20--off%20--output%20DP2%20--off%20--output%20DP3%20--off%20--output%20HDMI1%20--%20%20%20%20off%20--output%20HDMI2%20--off%20--output%20HDMI3%20--off%20--output%20VGA1%20--mode%201920x1080%20--pos%200x0%20--rotate%20normal%20--output%20VIRTUAL1%20--off%20%0A%0A%23start%20polybar%20on%20each%20monitor%0Alaunchpolybar.sh%0A```%0Aeditors%20note:%20I%20use%20a%20seperate%20polybar%20script%20so%20I%20can%20call%20it%20in%20my%20.Xinitrc%0Aand%20have%20polybar%20when%20I%20start%20up%20my%20xserver.%0A%0A%23%23%23%20Setting%20the%20Wallpapers%0ANitrogen%20is%20an%20amazing%20tool%20for%20managing%20wallpapers%20with%20a%20gui%20and%20simple%0Aconsole%20commands%20to%20restore%20wallpapers.%20Adding%20```nitrogen%20--restore```%20to%20the%0Aend%20of%20out%20MonitorOnLeft.sh%20script%20will%20take%20care%20of%20wallpapers%20and%20set%20them%20to%0Athe%20previous%20wallpapers%20we%20had.%20This%20also%20remembers%20the%20resolution%20and%20position%0Aof%20all%20wallpapers.%0A%0AOur%20end%20script%20should%20look%20something%20like%20this%20%0A```%0A%23!/bin/sh%0Axrandr%20--output%20LVDS1%20--primary%20--mode%201600x900%20--pos%201920x90%20--rotate%20normal%20--output%20DP1%20--off%20--output%20DP2%20--off%20--output%20DP3%20--off%20--output%20HDMI1%20--%20%20%20%20off%20--output%20HDMI2%20--off%20--output%20HDMI3%20--off%20--output%20VGA1%20--mode%201920x1080%20--pos%200x0%20--rotate%20normal%20--output%20VIRTUAL1%20--off%0A%0A%23start%20polybar%20on%20each%20monitor%0Alaunchpolybar.sh%0A%20%0A%23set%20wallpapers%20on%20montiors%0Anitrogen%20--restore%0A```%0A%0A%23%23%20At%20the%20Press%20of%20A%20Button%0AThis%20script%20can%20be%20called%20through%20a%20keybind%20for%20maximum%20ease.%20I3%27s%20config%0A```~/.config/i3/config```%20is%20where%20I%27ll%20add%20in%20the%20keybind.%20%0A```%0A%23arandr%0Abindsym%20$mod+F1%20exec%20NoExternalMonitor.sh%0Abindsym%20$mod+F2%20exec%20MonitorOnLeft.sh%0A```%0ATo%20make%20more%20monitor%20setups%20simply%20set%20it%20up%20in%20arandr%27s%20gui,%20save%20the%0Aauto-generated%20script%20from%20arandr%20and%20add%20the%20polybar%20and%20nitrogen%20scripts.%20%0A%0AAnd%20now%20you%20too%20can%20have%20cool,%20double%20triple%20monitor%20set%20ups%20with%20the%20press%0Aof%20the%20windows%20key%20+%20F1.%20%0A" for ::1 at 2021-06-04 11:29:59 -0600
+Processing by PostsController#create as */*
+  Parameters: {"title"=>"Monitor Management on Arch Linux", "author"=>"David Henderson", "body"=>"Multiple monitors are all but a necessity ( especially if you're t430 doesn't\nhave an hd screen like mine ) but luckily with a few tools and simple scripts\nexternal monitors can be as easy as two keystrokes. \n\n## Arandr and You \n\nArandr is a graphical tool for managing monitors on an X session. To grab it\njust use ```pacman -S arandr``` and let pacman do it's thing.\n\nArandr is a graphical tool and includes a nice gui, but that's not what we're\nhere for. We want to be able to change monitor setups with a keybind. Simply set\nup the monitor enviorment you want using arandr (making sure to set your\nresolution) and save the shell script it creates by clicking on Layout > Save\nAs. I saved mine to my scripts folder at ``` ~/.scripts/MonitorOnLeft.sh\"```\n\n## The Scripts\n\nAlmost done now we just need to clean up a few things. The auto-generated file\nis just a bash script shell telling xrandr what to do. This gives us a good spot\nto tie up some loose ends with more than one monitor. \n\n### Polybar\n\nI use (https://github.com/polybar/polybar/issues/763) which looks\nfor all active monitors and passes that through as a varible for polybar. \n\nMake a new shell script ( mine is named \"launchpolybar.sh\" ) and copy the code\ninto it. We need to kill the polybar instance we already had or you'll end up\nwith two polybars stacked. Adding ```killall polybar``` at the top of\nlaunchpolybar.sh script. Make it executable with ```chmod  x launchpolybar.sh```.  \n\nSo now we have a script that might look like this \n```\n#!/bin/sh\n xrandr --output LVDS1 --primary --mode 1600x900 --pos 1920x90 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --    off --output HDMI2 --off --output HDMI3 --off --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off \n\n#start polybar on each monitor\nlaunchpolybar.sh\n```\neditors note: I use a seperate polybar script so I can call it in my .Xinitrc\nand have polybar when I start up my xserver.\n\n### Setting the Wallpapers\nNitrogen is an amazing tool for managing wallpapers with a gui and simple\nconsole commands to restore wallpapers. Adding ```nitrogen --restore``` to the\nend of out MonitorOnLeft.sh script will take care of wallpapers and set them to\nthe previous wallpapers we had. This also remembers the resolution and position\nof all wallpapers.\n\nOur end script should look something like this \n```\n#!/bin/sh\nxrandr --output LVDS1 --primary --mode 1600x900 --pos 1920x90 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --    off --output HDMI2 --off --output HDMI3 --off --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off\n\n#start polybar on each monitor\nlaunchpolybar.sh\n \n#set wallpapers on montiors\nnitrogen --restore\n```\n\n## At the Press of A Button\nThis script can be called through a keybind for maximum ease. I3's config\n```~/.config/i3/config``` is where I'll add in the keybind. \n```\n#arandr\nbindsym $mod F1 exec NoExternalMonitor.sh\nbindsym $mod F2 exec MonitorOnLeft.sh\n```\nTo make more monitor setups simply set it up in arandr's gui, save the\nauto-generated script from arandr and add the polybar and nitrogen scripts. \n\nAnd now you too can have cool, double triple monitor set ups with the press\nof the windows key   F1. \n"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Monitor Management on Arch Linux"], ["body", "Multiple monitors are all but a necessity ( especially if you're t430 doesn't\nhave an hd screen like mine ) but luckily with a few tools and simple scripts\nexternal monitors can be as easy as two keystrokes. \n\n## Arandr and You \n\nArandr is a graphical tool for managing monitors on an X session. To grab it\njust use ```pacman -S arandr``` and let pacman do it's thing.\n\nArandr is a graphical tool and includes a nice gui, but that's not what we're\nhere for. We want to be able to change monitor setups with a keybind. Simply set\nup the monitor enviorment you want using arandr (making sure to set your\nresolution) and save the shell script it creates by clicking on Layout > Save\nAs. I saved mine to my scripts folder at ``` ~/.scripts/MonitorOnLeft.sh\"```\n\n## The Scripts\n\nAlmost done now we just need to clean up a few things. The auto-generated file\nis just a bash script shell telling xrandr what to do. This gives us a good spot\nto tie up some loose ends with more than one monitor. \n\n### Polybar\n\nI use (https://github.com/polybar/polybar/issues/763) which looks\nfor all active monitors and passes that through as a varible for polybar. \n\nMake a new shell script ( mine is named \"launchpolybar.sh\" ) and copy the code\ninto it. We need to kill the polybar instance we already had or you'll end up\nwith two polybars stacked. Adding ```killall polybar``` at the top of\nlaunchpolybar.sh script. Make it executable with ```chmod  x launchpolybar.sh```.  \n\nSo now we have a script that might look like this \n```\n#!/bin/sh\n xrandr --output LVDS1 --primary --mode 1600x900 --pos 1920x90 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --    off --output HDMI2 --off --output HDMI3 --off --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off \n\n#start polybar on each monitor\nlaunchpolybar.sh\n```\neditors note: I use a seperate polybar script so I can call it in my .Xinitrc\nand have polybar when I start up my xserver.\n\n### Setting the Wallpapers\nNitrogen is an amazing tool for managing wallpapers with a gui and simple\nconsole commands to restore wallpapers. Adding ```nitrogen --restore``` to the\nend of out MonitorOnLeft.sh script will take care of wallpapers and set them to\nthe previous wallpapers we had. This also remembers the resolution and position\nof all wallpapers.\n\nOur end script should look something like this \n```\n#!/bin/sh\nxrandr --output LVDS1 --primary --mode 1600x900 --pos 1920x90 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --    off --output HDMI2 --off --output HDMI3 --off --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off\n\n#start polybar on each monitor\nlaunchpolybar.sh\n \n#set wallpapers on montiors\nnitrogen --restore\n```\n\n## At the Press of A Button\nThis script can be called through a keybind for maximum ease. I3's config\n```~/.config/i3/config``` is where I'll add in the keybind. \n```\n#arandr\nbindsym $mod F1 exec NoExternalMonitor.sh\nbindsym $mod F2 exec MonitorOnLeft.sh\n```\nTo make more monitor setups simply set it up in arandr's gui, save the\nauto-generated script from arandr and add the polybar and nitrogen scripts. \n\nAnd now you too can have cool, double triple monitor set ups with the press\nof the windows key   F1. \n"], ["author", "David Henderson"], ["created_at", "2021-06-04 17:29:59.150769"], ["updated_at", "2021-06-04 17:29:59.150769"]]
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (138.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+Completed 201 Created in 146ms (Views: 0.6ms | ActiveRecord: 138.8ms | Allocations: 4181)
+
+
+Started POST "/posts/?title=Adjusting%20Brightness%20on%20a%20Thinkpad%20T430&author=David%20Henderson&body=After%20buying%20a%20Thinkpad%20T430%20off%20of%20ebay%20I%20went%20straight%20to%20insalling%20Arch%20Linux.%20Almost%20everything%20worked%20out%20of%20the%20box%20including%20sound(!)%20but%20none%20of%20my%20fn%20layer%20keys%20seemed%20to%20work.%20In%20my%20attempts%20at%20trying%20to%20change%20my%20friend%20into%20the%20linux%20ways,%20I%20figured%20I%27d%20document%20my%20steps%20and%20thoughts%20in%20solving%20this%20problem.%20Just%20know%20that%20I%20am%20not%20a%20master,%20and%20this%20is%20a%20very%20specific%20case%20and%20a%20very%20specific%20solution%20I%20came%20up%20with.%20I%20hope%20this%20can%20serve%20as%20a%20documentation%20to%20problem%20solving%20on%20linux%20and%20basic%20linux%20terminal%20commands.%0A%0A%23%23%20How%20to%20change%20brightness%0A%0ABacklight%20brightness%20is%20controlled%20by%20a%20file%20in%20```/sys/class/backlight/intel_backlight/backlight```.%20The%20file%20just%20has%20a%20number%20value%20(for%20me%20it%20was%20stuck%20on%20a%20max%20brightness%20of%204437)%20and%20using%20```echo%20brightnessValue%20%3E%20/path/tofile%20```%20%20you%20can%20theoritcally%20change%20the%20brightness.%20%0A%0AHere%27s%20where%20my%20issues%20began.%20Instant%20permission%20denied,%20and%20even%20using%20sudo%20I%20wasn%27t%20able%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20gave%20me%20an%20out%20put%20that%20looked%20something%20like%20this%20%0A```%0A-rw-r--r--%201%20root%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0AFrom%20this%20we%20can%20tell%20that%20root%20is%20the%20owner%20of%20the%20file%20and%20it%27s%20editable%20by%20root%20only.%20Since%20I%20want%20to%20be%20able%20to%20edit%20this%20file%20I%20can%20simply%20```chown%20david%20brightness```%20to%20change%20my%20user%20to%20the%20owner%20of%20the%20file,%20which%20should%20give%20me%20sufficient%20privilages%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20now%20gives%20me%20%0A```%0A-rw-r--r--%201%20david%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0A%0ASo%20we%27ve%20figured%20out%20how%20to%20edit%20the%20file%20and%20made%20it%20to%20where%20we%20can%20manually%20change%20the%20brightness%20value%20on%20our%20screen,%20but%20having%20to%20open%20a%20terminal%20to%20type%20that%20in%20manually%20each%20time%20is%20a%20pain.%20Which%20leads%20us%20to%0A%0A%23%23%20Making%20a%20script%20to%20adjust%20the%20brightness%0A%0AWe%20have%20a%20dedicated%20key%20to%20increase%20the%20brightness%20and%20when%20we%20press%20that%20key%20it%20should%20increase%20the%20brightness.%20This%20is%20where%20we%20can%20write%20a%20simple%20bash%20script%20to%20either%20add%20or%20subtract%2010%%20of%20the%20brightness%20value%20and%20then%20write%20that%20out%20to%20the%20file.%20The%20ever%20helpful%20[`%20on%20the%20%23archlinux%20freenode%20server%20helped%20me%20come%20up%20with%20this%0A```%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%209/10))%0A```%0AIt%20looks%20complicated%20but%20all%20it%20does%20is%20grab%20the%20value%20of%20the%20brightness%20file,%20and%20times%20it%20by%209/10%20(bash%20can%27t%20handle%20decimals),%20which%20echos%2090%%20of%20the%20original%20brightness%20file%27s%20value.%20Use%20%3E%20to%20pipe%20it%20into%20the%20brightness%20file%20again%20and%20we%20have%20a%20script%20that%20will%20decrease%20our%20brightness.%20I%20saved%20this%20file%20as%20```~/.scripts/brightnessDown```%0ANow%20we%27re%20going%20to%20quickly%20make%20a%20copy,%20edit%20it%20to%20increase%20brightness%20instead%20of%20decrease%20and%20save%20it%20as%20brightnessDown.%20In%20a%20terminal%20:%20%0A```%0Acp%20~/.scripts/brightnessDown%20~/.scripts/brightnessUp%0Avim%20~/.scripts/brightnessUp%0A%0A%23!/bin/sh%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%2011/10)%20%3E%20/sys/class/backlight/intel_backlight/brightness%0A```%0A%0AWe%20just%20need%20to%20make%20this%20into%20a%20executable%20script%20and%20bam%20we%20have%20our%20scripts%20in%20place.%0A```chmod%20+x%20brightnessUp%20brightnessDown```%0A%0A%23%23%20Linking%20the%20keypress%20to%20the%20scripts%0A%0AI%20use%20i3-gaps%20which%20is%20a%20tiling%20window%20manager.%20Whenever%20I%20load%20i3%20on%20an%20xserver%20a%20file%20called%20```~/.config/i3/config```%20is%20ran%20and%20through%20here%20I%20can%20set%20up%20my%20keybinds.%20This%20is%20going%20to%20be%20specific%20on%20which%20window%20manager%20/%20desktop%20enviorment%20you%20use%20but%20a%20google%20search%20should%20give%20you%20the%20right%20place%20and%20way%20to%20put%20these%20keybinds.%0A%0A```Xev```%20is%20a%20beautiful%20tool%20that%20will%20print%20the%20name%20of%20the%20key%20you%20just%20pressed%20into%20a%20terminal.%20Using%20this%20we%20know%20that%20our%20brightness%20up%20key%20and%20down%20key%20are%20called%20```XF86MonBrightnessUp%20XF86MonBrightnessDown```%20respectively.%20%0AAdding%20that%20keybind%20to%20my%20i3%20config%20would%20look%20something%20like%20this%20:%0A```%0Abindsym%20XF86MonBrightnessUp%20brightnessUp%0Abindsym%20XF86MonBrightnessDown%20brightnessDown%0A```%0AThis%20will%20run%20our%20```brightnessUp```%20script%20when%20we%20press%20our%20brightness%20up%20key,%20and%20run%20```brightnessDown```%20when%20we%20press%20brightness%20down.%20%0A%0A%23%23%20A%20few%20kinks%0A%0ARemember%20when%20we%20made%20our%20brightness%20file%20editable%20by%20our%20user%20profile?%20Well%20that%20breaks%20when%20we%20restart%20our%20computer.%20%20We%20know%20that%20our%20```chown```%20command%20allows%20us%20to%20edit%20the%20file%20so%20an%20easy%20solution%20is%20just%20to%20run%20that%20command%20everytime%20we%20start%20our%20computer.%20%0A%0AThis%20is%20another%20distro-specific%20issue%20but%20for%20me%20theres%20a%20file%20specifically%20made%20for%20running%20commands%20on%20loading%20bash.%20I%20edited%20```/etc/rc.local```%20to%20simply%20run%20my%20```chown```%20command%20and%20was%20all%20set.%20%0A%0A%23%23%20Summary%20%0A%0AThese%20are%20all%20the%20steps%20I%20took%20to%20fix%20a%20simple%20problem%20and%20with%20all%20the%20googling%20and%20editing%20it%20probably%20took%20me%20about%2030%20minutes.%20I%20learned%20about%20the%20```chown```%20command%20and%20how%20to%20autorun%20commands%20on%20startup%20and%20if%20I%20had%20to%20do%20it%20again%20I%20could%20probably%20do%20it%20in%20just%20a%20few%20minutes.%20%0A%0A" for ::1 at 2021-06-04 11:30:52 -0600
+  
+ActionController::BadRequest (Invalid query parameters: invalid %-encoding (After%20buying%20a%20Thinkpad%20T430%20off%20of%20ebay%20I%20went%20straight%20to%20insalling%20Arch%20Linux.%20Almost%20everything%20worked%20out%20of%20the%20box%20including%20sound(!)%20but%20none%20of%20my%20fn%20layer%20keys%20seemed%20to%20work.%20In%20my%20attempts%20at%20trying%20to%20change%20my%20friend%20into%20the%20linux%20ways,%20I%20figured%20I%27d%20document%20my%20steps%20and%20thoughts%20in%20solving%20this%20problem.%20Just%20know%20that%20I%20am%20not%20a%20master,%20and%20this%20is%20a%20very%20specific%20case%20and%20a%20very%20specific%20solution%20I%20came%20up%20with.%20I%20hope%20this%20can%20serve%20as%20a%20documentation%20to%20problem%20solving%20on%20linux%20and%20basic%20linux%20terminal%20commands.%0A%0A%23%23%20How%20to%20change%20brightness%0A%0ABacklight%20brightness%20is%20controlled%20by%20a%20file%20in%20```/sys/class/backlight/intel_backlight/backlight```.%20The%20file%20just%20has%20a%20number%20value%20(for%20me%20it%20was%20stuck%20on%20a%20max%20brightness%20of%204437)%20and%20using%20```echo%20brightnessValue%20%3E%20/path/tofile%20```%20%20you%20can%20theoritcally%20change%20the%20brightness.%20%0A%0AHere%27s%20where%20my%20issues%20began.%20Instant%20permission%20denied,%20and%20even%20using%20sudo%20I%20wasn%27t%20able%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20gave%20me%20an%20out%20put%20that%20looked%20something%20like%20this%20%0A```%0A-rw-r--r--%201%20root%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0AFrom%20this%20we%20can%20tell%20that%20root%20is%20the%20owner%20of%20the%20file%20and%20it%27s%20editable%20by%20root%20only.%20Since%20I%20want%20to%20be%20able%20to%20edit%20this%20file%20I%20can%20simply%20```chown%20david%20brightness```%20to%20change%20my%20user%20to%20the%20owner%20of%20the%20file,%20which%20should%20give%20me%20sufficient%20privilages%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20now%20gives%20me%20%0A```%0A-rw-r--r--%201%20david%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0A%0ASo%20we%27ve%20figured%20out%20how%20to%20edit%20the%20file%20and%20made%20it%20to%20where%20we%20can%20manually%20change%20the%20brightness%20value%20on%20our%20screen,%20but%20having%20to%20open%20a%20terminal%20to%20type%20that%20in%20manually%20each%20time%20is%20a%20pain.%20Which%20leads%20us%20to%0A%0A%23%23%20Making%20a%20script%20to%20adjust%20the%20brightness%0A%0AWe%20have%20a%20dedicated%20key%20to%20increase%20the%20brightness%20and%20when%20we%20press%20that%20key%20it%20should%20increase%20the%20brightness.%20This%20is%20where%20we%20can%20write%20a%20simple%20bash%20script%20to%20either%20add%20or%20subtract%2010%%20of%20the%20brightness%20value%20and%20then%20write%20that%20out%20to%20the%20file.%20The%20ever%20helpful%20[`%20on%20the%20%23archlinux%20freenode%20server%20helped%20me%20come%20up%20with%20this%0A```%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%209/10))%0A```%0AIt%20looks%20complicated%20but%20all%20it%20does%20is%20grab%20the%20value%20of%20the%20brightness%20file,%20and%20times%20it%20by%209/10%20(bash%20can%27t%20handle%20decimals),%20which%20echos%2090%%20of%20the%20original%20brightness%20file%27s%20value.%20Use%20%3E%20to%20pipe%20it%20into%20the%20brightness%20file%20again%20and%20we%20have%20a%20script%20that%20will%20decrease%20our%20brightness.%20I%20saved%20this%20file%20as%20```~/.scripts/brightnessDown```%0ANow%20we%27re%20going%20to%20quickly%20make%20a%20copy,%20edit%20it%20to%20increase%20brightness%20instead%20of%20decrease%20and%20save%20it%20as%20brightnessDown.%20In%20a%20terminal%20:%20%0A```%0Acp%20~/.scripts/brightnessDown%20~/.scripts/brightnessUp%0Avim%20~/.scripts/brightnessUp%0A%0A%23!/bin/sh%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%2011/10)%20%3E%20/sys/class/backlight/intel_backlight/brightness%0A```%0A%0AWe%20just%20need%20to%20make%20this%20into%20a%20executable%20script%20and%20bam%20we%20have%20our%20scripts%20in%20place.%0A```chmod%20+x%20brightnessUp%20brightnessDown```%0A%0A%23%23%20Linking%20the%20keypress%20to%20the%20scripts%0A%0AI%20use%20i3-gaps%20which%20is%20a%20tiling%20window%20manager.%20Whenever%20I%20load%20i3%20on%20an%20xserver%20a%20file%20called%20```~/.config/i3/config```%20is%20ran%20and%20through%20here%20I%20can%20set%20up%20my%20keybinds.%20This%20is%20going%20to%20be%20specific%20on%20which%20window%20manager%20/%20desktop%20enviorment%20you%20use%20but%20a%20google%20search%20should%20give%20you%20the%20right%20place%20and%20way%20to%20put%20these%20keybinds.%0A%0A```Xev```%20is%20a%20beautiful%20tool%20that%20will%20print%20the%20name%20of%20the%20key%20you%20just%20pressed%20into%20a%20terminal.%20Using%20this%20we%20know%20that%20our%20brightness%20up%20key%20and%20down%20key%20are%20called%20```XF86MonBrightnessUp%20XF86MonBrightnessDown```%20respectively.%20%0AAdding%20that%20keybind%20to%20my%20i3%20config%20would%20look%20something%20like%20this%20:%0A```%0Abindsym%20XF86MonBrightnessUp%20brightnessUp%0Abindsym%20XF86MonBrightnessDown%20brightnessDown%0A```%0AThis%20will%20run%20our%20```brightnessUp```%20script%20when%20we%20press%20our%20brightness%20up%20key,%20and%20run%20```brightnessDown```%20when%20we%20press%20brightness%20down.%20%0A%0A%23%23%20A%20few%20kinks%0A%0ARemember%20when%20we%20made%20our%20brightness%20file%20editable%20by%20our%20user%20profile?%20Well%20that%20breaks%20when%20we%20restart%20our%20computer.%20%20We%20know%20that%20our%20```chown```%20command%20allows%20us%20to%20edit%20the%20file%20so%20an%20easy%20solution%20is%20just%20to%20run%20that%20command%20everytime%20we%20start%20our%20computer.%20%0A%0AThis%20is%20another%20distro-specific%20issue%20but%20for%20me%20theres%20a%20file%20specifically%20made%20for%20running%20commands%20on%20loading%20bash.%20I%20edited%20```/etc/rc.local```%20to%20simply%20run%20my%20```chown```%20command%20and%20was%20all%20set.%20%0A%0A%23%23%20Summary%20%0A%0AThese%20are%20all%20the%20steps%20I%20took%20to%20fix%20a%20simple%20problem%20and%20with%20all%20the%20googling%20and%20editing%20it%20probably%20took%20me%20about%2030%20minutes.%20I%20learned%20about%20the%20```chown```%20command%20and%20how%20to%20autorun%20commands%20on%20startup%20and%20if%20I%20had%20to%20do%20it%20again%20I%20could%20probably%20do%20it%20in%20just%20a%20few%20minutes.%20%0A%0A)):
+  
+/home/david/.rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/uri/common.rb:387:in `decode_www_form_component'
+rack (2.2.3) lib/rack/utils.rb:54:in `unescape'
+rack (2.2.3) lib/rack/query_parser.rb:155:in `unescape'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `block (2 levels) in parse_nested_query'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `map!'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `block in parse_nested_query'
+rack (2.2.3) lib/rack/query_parser.rb:68:in `each'
+rack (2.2.3) lib/rack/query_parser.rb:68:in `parse_nested_query'
+rack (2.2.3) lib/rack/request.rb:590:in `parse_query'
+rack (2.2.3) lib/rack/request.rb:430:in `GET'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:383:in `block in GET'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:382:in `GET'
+actionpack (6.1.3.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3.2) lib/action_dispatch/http/filter_parameters.rb:43:in `filtered_parameters'
+actionpack (6.1.3.2) lib/action_controller/metal/instrumentation.rb:24:in `process_action'
+actionpack (6.1.3.2) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.3.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3.2) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3.2) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3.2) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started POST "/posts/?title=Adjusting%20Brightness%20on%20a%20Thinkpad%20T430&author=David%20Henderson&body=After%20buying%20a%20Thinkpad%20T430%20off%20of%20ebay%20I%20went%20straight%20to%20insalling%20Arch%20Linux.%20Almost%20everything%20worked%20out%20of%20the%20box%20including%20sound(!)%20but%20none%20of%20my%20fn%20layer%20keys%20seemed%20to%20work.%20In%20my%20attempts%20at%20trying%20to%20change%20my%20friend%20into%20the%20linux%20ways,%20I%20figured%20I%27d%20document%20my%20steps%20and%20thoughts%20in%20solving%20this%20problem.%20Just%20know%20that%20I%20am%20not%20a%20master,%20and%20this%20is%20a%20very%20specific%20case%20and%20a%20very%20specific%20solution%20I%20came%20up%20with.%20I%20hope%20this%20can%20serve%20as%20a%20documentation%20to%20problem%20solving%20on%20linux%20and%20basic%20linux%20terminal%20commands.%0A%0A%23%23%20How%20to%20change%20brightness%0A%0ABacklight%20brightness%20is%20controlled%20by%20a%20file%20in%20```/sys/class/backlight/intel_backlight/backlight```.%20The%20file%20just%20has%20a%20number%20value%20(for%20me%20it%20was%20stuck%20on%20a%20max%20brightness%20of%204437)%20and%20using%20```echo%20brightnessValue%20%3E%20/path/tofile%20```%20%20you%20can%20theoritcally%20change%20the%20brightness.%20%0A%0AHere%27s%20where%20my%20issues%20began.%20Instant%20permission%20denied,%20and%20even%20using%20sudo%20I%20wasn%27t%20able%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20gave%20me%20an%20out%20put%20that%20looked%20something%20like%20this%20%0A```%0A-rw-r--r--%201%20root%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0AFrom%20this%20we%20can%20tell%20that%20root%20is%20the%20owner%20of%20the%20file%20and%20it%27s%20editable%20by%20root%20only.%20Since%20I%20want%20to%20be%20able%20to%20edit%20this%20file%20I%20can%20simply%20```chown%20david%20brightness```%20to%20change%20my%20user%20to%20the%20owner%20of%20the%20file,%20which%20should%20give%20me%20sufficient%20privilages%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20now%20gives%20me%20%0A```%0A-rw-r--r--%201%20david%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0A%0ASo%20we%27ve%20figured%20out%20how%20to%20edit%20the%20file%20and%20made%20it%20to%20where%20we%20can%20manually%20change%20the%20brightness%20value%20on%20our%20screen,%20but%20having%20to%20open%20a%20terminal%20to%20type%20that%20in%20manually%20each%20time%20is%20a%20pain.%20Which%20leads%20us%20to%0A%0A%23%23%20Making%20a%20script%20to%20adjust%20the%20brightness%0A%0AWe%20have%20a%20dedicated%20key%20to%20increase%20the%20brightness%20and%20when%20we%20press%20that%20key%20it%20should%20increase%20the%20brightness.%20This%20is%20where%20we%20can%20write%20a%20simple%20bash%20script%20to%20either%20add%20or%20subtract%2010%%20of%20the%20brightness%20value%20and%20then%20write%20that%20out%20to%20the%20file.%20The%20ever%20helpful%20[`%20on%20the%20%23archlinux%20freenode%20server%20helped%20me%20come%20up%20with%20this%0A```%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%209/10))%0A```%0AIt%20looks%20complicated%20but%20all%20it%20does%20is%20grab%20the%20value%20of%20the%20brightness%20file,%20and%20times%20it%20by%209/10%20(bash%20can%27t%20handle%20decimals),%20which%20echos%2090%%20of%20the%20original%20brightness%20file%27s%20value.%20Use%20%3E%20to%20pipe%20it%20into%20the%20brightness%20file%20again%20and%20we%20have%20a%20script%20that%20will%20decrease%20our%20brightness.%20I%20saved%20this%20file%20as%20```~/.scripts/brightnessDown```%0ANow%20we%27re%20going%20to%20quickly%20make%20a%20copy,%20edit%20it%20to%20increase%20brightness%20instead%20of%20decrease%20and%20save%20it%20as%20brightnessDown.%20In%20a%20terminal%20:%20%0A```%0Acp%20~/.scripts/brightnessDown%20~/.scripts/brightnessUp%0Avim%20~/.scripts/brightnessUp%0A%0A%23!/bin/sh%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%2011/10)%20%3E%20/sys/class/backlight/intel_backlight/brightness%0A```%0A%0AWe%20just%20need%20to%20make%20this%20into%20a%20executable%20script%20and%20bam%20we%20have%20our%20scripts%20in%20place.%0A```chmod%20+x%20brightnessUp%20brightnessDown```%0A%0A%23%23%20Linking%20the%20keypress%20to%20the%20scripts%0A%0AI%20use%20i3-gaps%20which%20is%20a%20tiling%20window%20manager.%20Whenever%20I%20load%20i3%20on%20an%20xserver%20a%20file%20called%20```~/.config/i3/config```%20is%20ran%20and%20through%20here%20I%20can%20set%20up%20my%20keybinds.%20This%20is%20going%20to%20be%20specific%20on%20which%20window%20manager%20/%20desktop%20enviorment%20you%20use%20but%20a%20google%20search%20should%20give%20you%20the%20right%20place%20and%20way%20to%20put%20these%20keybinds.%0A%0A```Xev```%20is%20a%20beautiful%20tool%20that%20will%20print%20the%20name%20of%20the%20key%20you%20just%20pressed%20into%20a%20terminal.%20Using%20this%20we%20know%20that%20our%20brightness%20up%20key%20and%20down%20key%20are%20called%20```XF86MonBrightnessUp%20XF86MonBrightnessDown```%20respectively.%20%0AAdding%20that%20keybind%20to%20my%20i3%20config%20would%20look%20something%20like%20this%20:%0A```%0Abindsym%20XF86MonBrightnessUp%20brightnessUp%0Abindsym%20XF86MonBrightnessDown%20brightnessDown%0A```%0AThis%20will%20run%20our%20```brightnessUp```%20script%20when%20we%20press%20our%20brightness%20up%20key,%20and%20run%20```brightnessDown```%20when%20we%20press%20brightness%20down.%20%0A%0A%23%23%20A%20few%20kinks%0A%0ARemember%20when%20we%20made%20our%20brightness%20file%20editable%20by%20our%20user%20profile?%20Well%20that%20breaks%20when%20we%20restart%20our%20computer.%20%20We%20know%20that%20our%20```chown```%20command%20allows%20us%20to%20edit%20the%20file%20so%20an%20easy%20solution%20is%20just%20to%20run%20that%20command%20everytime%20we%20start%20our%20computer.%20%0A%0AThis%20is%20another%20distro-specific%20issue%20but%20for%20me%20theres%20a%20file%20specifically%20made%20for%20running%20commands%20on%20loading%20bash.%20I%20edited%20```/etc/rc.local```%20to%20simply%20run%20my%20```chown```%20command%20and%20was%20all%20set.%20%0A%0A%23%23%20Summary%20%0A%0AThese%20are%20all%20the%20steps%20I%20took%20to%20fix%20a%20simple%20problem%20and%20with%20all%20the%20googling%20and%20editing%20it%20probably%20took%20me%20about%2030%20minutes.%20I%20learned%20about%20the%20```chown```%20command%20and%20how%20to%20autorun%20commands%20on%20startup%20and%20if%20I%20had%20to%20do%20it%20again%20I%20could%20probably%20do%20it%20in%20just%20a%20few%20minutes.%20%0A%0A" for ::1 at 2021-06-04 11:31:11 -0600
+  
+ActionController::BadRequest (Invalid query parameters: invalid %-encoding (After%20buying%20a%20Thinkpad%20T430%20off%20of%20ebay%20I%20went%20straight%20to%20insalling%20Arch%20Linux.%20Almost%20everything%20worked%20out%20of%20the%20box%20including%20sound(!)%20but%20none%20of%20my%20fn%20layer%20keys%20seemed%20to%20work.%20In%20my%20attempts%20at%20trying%20to%20change%20my%20friend%20into%20the%20linux%20ways,%20I%20figured%20I%27d%20document%20my%20steps%20and%20thoughts%20in%20solving%20this%20problem.%20Just%20know%20that%20I%20am%20not%20a%20master,%20and%20this%20is%20a%20very%20specific%20case%20and%20a%20very%20specific%20solution%20I%20came%20up%20with.%20I%20hope%20this%20can%20serve%20as%20a%20documentation%20to%20problem%20solving%20on%20linux%20and%20basic%20linux%20terminal%20commands.%0A%0A%23%23%20How%20to%20change%20brightness%0A%0ABacklight%20brightness%20is%20controlled%20by%20a%20file%20in%20```/sys/class/backlight/intel_backlight/backlight```.%20The%20file%20just%20has%20a%20number%20value%20(for%20me%20it%20was%20stuck%20on%20a%20max%20brightness%20of%204437)%20and%20using%20```echo%20brightnessValue%20%3E%20/path/tofile%20```%20%20you%20can%20theoritcally%20change%20the%20brightness.%20%0A%0AHere%27s%20where%20my%20issues%20began.%20Instant%20permission%20denied,%20and%20even%20using%20sudo%20I%20wasn%27t%20able%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20gave%20me%20an%20out%20put%20that%20looked%20something%20like%20this%20%0A```%0A-rw-r--r--%201%20root%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0AFrom%20this%20we%20can%20tell%20that%20root%20is%20the%20owner%20of%20the%20file%20and%20it%27s%20editable%20by%20root%20only.%20Since%20I%20want%20to%20be%20able%20to%20edit%20this%20file%20I%20can%20simply%20```chown%20david%20brightness```%20to%20change%20my%20user%20to%20the%20owner%20of%20the%20file,%20which%20should%20give%20me%20sufficient%20privilages%20to%20edit%20the%20file.%20```ls%20-l%20brightness```%20now%20gives%20me%20%0A```%0A-rw-r--r--%201%20david%20root%204096%20Apr%2018%2023:35%20brightness%0A```%0A%0ASo%20we%27ve%20figured%20out%20how%20to%20edit%20the%20file%20and%20made%20it%20to%20where%20we%20can%20manually%20change%20the%20brightness%20value%20on%20our%20screen,%20but%20having%20to%20open%20a%20terminal%20to%20type%20that%20in%20manually%20each%20time%20is%20a%20pain.%20Which%20leads%20us%20to%0A%0A%23%23%20Making%20a%20script%20to%20adjust%20the%20brightness%0A%0AWe%20have%20a%20dedicated%20key%20to%20increase%20the%20brightness%20and%20when%20we%20press%20that%20key%20it%20should%20increase%20the%20brightness.%20This%20is%20where%20we%20can%20write%20a%20simple%20bash%20script%20to%20either%20add%20or%20subtract%2010%%20of%20the%20brightness%20value%20and%20then%20write%20that%20out%20to%20the%20file.%20The%20ever%20helpful%20[`%20on%20the%20%23archlinux%20freenode%20server%20helped%20me%20come%20up%20with%20this%0A```%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%209/10))%0A```%0AIt%20looks%20complicated%20but%20all%20it%20does%20is%20grab%20the%20value%20of%20the%20brightness%20file,%20and%20times%20it%20by%209/10%20(bash%20can%27t%20handle%20decimals),%20which%20echos%2090%%20of%20the%20original%20brightness%20file%27s%20value.%20Use%20%3E%20to%20pipe%20it%20into%20the%20brightness%20file%20again%20and%20we%20have%20a%20script%20that%20will%20decrease%20our%20brightness.%20I%20saved%20this%20file%20as%20```~/.scripts/brightnessDown```%0ANow%20we%27re%20going%20to%20quickly%20make%20a%20copy,%20edit%20it%20to%20increase%20brightness%20instead%20of%20decrease%20and%20save%20it%20as%20brightnessDown.%20In%20a%20terminal%20:%20%0A```%0Acp%20~/.scripts/brightnessDown%20~/.scripts/brightnessUp%0Avim%20~/.scripts/brightnessUp%0A%0A%23!/bin/sh%0Aecho%20$((%20$%3C%20/sys/class/backlight/intel_backlight/brightness)%20*%2011/10)%20%3E%20/sys/class/backlight/intel_backlight/brightness%0A```%0A%0AWe%20just%20need%20to%20make%20this%20into%20a%20executable%20script%20and%20bam%20we%20have%20our%20scripts%20in%20place.%0A```chmod%20+x%20brightnessUp%20brightnessDown```%0A%0A%23%23%20Linking%20the%20keypress%20to%20the%20scripts%0A%0AI%20use%20i3-gaps%20which%20is%20a%20tiling%20window%20manager.%20Whenever%20I%20load%20i3%20on%20an%20xserver%20a%20file%20called%20```~/.config/i3/config```%20is%20ran%20and%20through%20here%20I%20can%20set%20up%20my%20keybinds.%20This%20is%20going%20to%20be%20specific%20on%20which%20window%20manager%20/%20desktop%20enviorment%20you%20use%20but%20a%20google%20search%20should%20give%20you%20the%20right%20place%20and%20way%20to%20put%20these%20keybinds.%0A%0A```Xev```%20is%20a%20beautiful%20tool%20that%20will%20print%20the%20name%20of%20the%20key%20you%20just%20pressed%20into%20a%20terminal.%20Using%20this%20we%20know%20that%20our%20brightness%20up%20key%20and%20down%20key%20are%20called%20```XF86MonBrightnessUp%20XF86MonBrightnessDown```%20respectively.%20%0AAdding%20that%20keybind%20to%20my%20i3%20config%20would%20look%20something%20like%20this%20:%0A```%0Abindsym%20XF86MonBrightnessUp%20brightnessUp%0Abindsym%20XF86MonBrightnessDown%20brightnessDown%0A```%0AThis%20will%20run%20our%20```brightnessUp```%20script%20when%20we%20press%20our%20brightness%20up%20key,%20and%20run%20```brightnessDown```%20when%20we%20press%20brightness%20down.%20%0A%0A%23%23%20A%20few%20kinks%0A%0ARemember%20when%20we%20made%20our%20brightness%20file%20editable%20by%20our%20user%20profile?%20Well%20that%20breaks%20when%20we%20restart%20our%20computer.%20%20We%20know%20that%20our%20```chown```%20command%20allows%20us%20to%20edit%20the%20file%20so%20an%20easy%20solution%20is%20just%20to%20run%20that%20command%20everytime%20we%20start%20our%20computer.%20%0A%0AThis%20is%20another%20distro-specific%20issue%20but%20for%20me%20theres%20a%20file%20specifically%20made%20for%20running%20commands%20on%20loading%20bash.%20I%20edited%20```/etc/rc.local```%20to%20simply%20run%20my%20```chown```%20command%20and%20was%20all%20set.%20%0A%0A%23%23%20Summary%20%0A%0AThese%20are%20all%20the%20steps%20I%20took%20to%20fix%20a%20simple%20problem%20and%20with%20all%20the%20googling%20and%20editing%20it%20probably%20took%20me%20about%2030%20minutes.%20I%20learned%20about%20the%20```chown```%20command%20and%20how%20to%20autorun%20commands%20on%20startup%20and%20if%20I%20had%20to%20do%20it%20again%20I%20could%20probably%20do%20it%20in%20just%20a%20few%20minutes.%20%0A%0A)):
+  
+/home/david/.rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/uri/common.rb:387:in `decode_www_form_component'
+rack (2.2.3) lib/rack/utils.rb:54:in `unescape'
+rack (2.2.3) lib/rack/query_parser.rb:155:in `unescape'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `block (2 levels) in parse_nested_query'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `map!'
+rack (2.2.3) lib/rack/query_parser.rb:69:in `block in parse_nested_query'
+rack (2.2.3) lib/rack/query_parser.rb:68:in `each'
+rack (2.2.3) lib/rack/query_parser.rb:68:in `parse_nested_query'
+rack (2.2.3) lib/rack/request.rb:590:in `parse_query'
+rack (2.2.3) lib/rack/request.rb:430:in `GET'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:383:in `block in GET'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:382:in `GET'
+actionpack (6.1.3.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3.2) lib/action_dispatch/http/filter_parameters.rb:43:in `filtered_parameters'
+actionpack (6.1.3.2) lib/action_controller/metal/instrumentation.rb:24:in `process_action'
+actionpack (6.1.3.2) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.3.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3.2) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3.2) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3.2) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/posts" for 127.0.0.1 at 2021-06-04 11:31:27 -0600
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 17ms (Views: 15.9ms | ActiveRecord: 0.3ms | Allocations: 906)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 11:43:56 -0600
+Processing by PostsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.5ms | Allocations: 1489)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 11:43:59 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 889)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 11:44:33 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 11:44:41 -0600
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 16ms (Views: 8.0ms | ActiveRecord: 0.8ms | Allocations: 7408)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 11:44:43 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1088)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 11:44:44 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 662)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 11:44:46 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 657)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 11:44:47 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 662)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProjects (20210604174610)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "link" varchar, "pic" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210604174610"]]
+  [1m[36mTRANSACTION (125.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 11:52:56 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.2ms | Allocations: 3178)
+
+
+Started GET "/posts" for 127.0.0.1 at 2021-06-04 11:53:00 -0600
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.6ms | Allocations: 5060)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProjects (20210604174610)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "projects"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20210604174610"]]
+  [1m[36mTRANSACTION (88.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProjects (20210604174610)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "link" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210604174610"]]
+  [1m[36mTRANSACTION (128.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (0.4ms)[0m  [1m[32mINSERT INTO "projects" ("title", "link", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Into the Clouds"], ["link", "https://github.com/notDavidHenderson/InTheClouds"], ["description", "A small todo visualizer in the theme of a cloudy day"], ["created_at", "2021-06-04 17:58:09.671784"], ["updated_at", "2021-06-04 17:58:09.671784"]]
+  [1m[36mTRANSACTION (99.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (0.3ms)[0m  [1m[32mINSERT INTO "projects" ("title", "link", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "LinkedIn-dorser"], ["link", "https://github.com/notDavidHenderson/LinkedIndorser"], ["description", "Quickly endorse all of the skills on a LinkedIn page just by visiting!"], ["created_at", "2021-06-04 17:59:36.471908"], ["updated_at", "2021-06-04 17:59:36.471908"]]
+  [1m[36mTRANSACTION (105.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (0.3ms)[0m  [1m[32mINSERT INTO "projects" ("title", "link", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Guess That Hex"], ["link", "https://github.com/notDavidHenderson/GuessThatHex"], ["description", "Hone your hex guessing skills in this fun JS based game"], ["created_at", "2021-06-04 18:00:32.715182"], ["updated_at", "2021-06-04 18:00:32.715182"]]
+  [1m[36mTRANSACTION (116.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (0.4ms)[0m  [1m[32mINSERT INTO "projects" ("title", "link", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "EzCd"], ["link", "https://github.com/notDavidHenderson/EzCd"], ["description", "Quickly check out your cd's in this React and Rails project"], ["created_at", "2021-06-04 18:01:47.119489"], ["updated_at", "2021-06-04 18:01:47.119489"]]
+  [1m[36mTRANSACTION (116.8ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:02:06 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 9ms (Views: 5.7ms | ActiveRecord: 0.5ms | Allocations: 7585)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:05:12 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.5ms | Allocations: 4334)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:05:13 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 1172)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:05:16 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 1172)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:05:39 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1172)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:07:38 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:09:05 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:09:17 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:10:20 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 1155)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:11:20 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:11:33 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:11:58 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:12:06 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:20:39 -0600
+Processing by ProjectsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 4.1ms | ActiveRecord: 0.6ms | Allocations: 1753)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:20:44 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 1154)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:20:46 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms | Allocations: 907)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 12:20:47 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 2360)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 12:20:48 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.2ms | Allocations: 646)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:27:32 -0600
+Processing by ProjectsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.6ms | Allocations: 1752)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:27:38 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 907)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 12:27:39 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 658)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 12:27:40 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 645)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:28:16 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:28:31 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:28:35 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 1154)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:28:38 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 890)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 12:28:45 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 640)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 12:28:48 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 645)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:29:13 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:29:14 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:29:14 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:29:15 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started GET "/posts/3" for 127.0.0.1 at 2021-06-04 12:29:16 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 645)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2021-06-04 12:29:17 -0600
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:29:in `find_post'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 640)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:31:30 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2021-06-04 12:32:33 -0600
+Processing by PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:33:31 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:35:07 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 1154)
+
+
+Started GET "/projects" for 127.0.0.1 at 2021-06-04 12:35:30 -0600
+Processing by ProjectsController#index as */*
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/controllers/projects_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.2ms | Allocations: 1155)
+
+
