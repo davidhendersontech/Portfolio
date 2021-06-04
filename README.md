@@ -1,8 +1,9 @@
 # Davidhenderson.tech
 
 Portfoilo website made for the mod 5 project week @flatiron school
+![screenshot](https://raw.githubusercontent.com/notDavidHenderson/Portfolio/main/screenshots/Screenshot_2021-06-04%20David%20Henderson.png)
 
-## technologies
+## Technologies
 
 This project uses tailwind for styling, react for frontend, and ruby on rails for a backend
 
